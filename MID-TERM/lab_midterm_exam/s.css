@@ -1,54 +1,42 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-}
-
-header {
-    padding: 20px 0;
-}
-
-.logo {
-    width: 150px;
-}
-
-nav {
-    background-color: white;
-    padding: 10px 0;
-}
-
-nav ul {
-    list-style-type: none;
+.ima {
     display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 20px;
 }
 
-nav ul li {
-    list-style: none;
+.grid-item {
+    position: relative;
+    overflow: hidden;
 }
 
-nav ul li a {
-    text-decoration: none;
-    color: black;
-    font-weight: bold;
-    transition: color 0.3s;
-}
-
-nav ul li a:hover {
-    color: #a38c67;
-}
-
-.hero img, .second-image img {
+.grid-item img {
     width: 100%;
-    height: auto;
-    max-height: 400px;
+    height: 350px; 
     object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 10px;
+    width: 80%;
+    border-radius: 8px;
+}
+
+.overlay h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.overlay .btn {
+    margin-top: 5px;
+    background-color: #b89f74;
+    border: none;
 }
 
 .info-section {
@@ -141,3 +129,55 @@ footer {
     margin-top: 30px;
 }
 
+/* Mega Menu Styles */
+.nav-item.position-relative {
+    position: relative;
+}
+
+.mega-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100vw;
+    background-color: #f8f8f8;
+    display: none;
+    flex-wrap: wrap;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
+}
+
+.mega-menu.show {
+    display: flex;
+}
+
+.mega-menu .task {
+    flex: 1 1 20%;
+    padding: 10px;
+    border-right: 1px solid #ccc;
+    min-width: 200px;
+}
+
+.mega-menu .task:last-child {
+    border-right: none;
+}
+
+.mega-menu h4 {
+    margin-top: 0;
+    color: #8c734b;
+}
+
+.mega-menu p {
+    font-size: 0.9rem;
+}
+
+.mega-menu a {
+    color: #a38c67;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.mega-menu a:hover {
+    text-decoration: underline;
+}

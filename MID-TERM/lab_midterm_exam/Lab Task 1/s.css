@@ -38,6 +38,7 @@
     background-color: #b89f74;
     border: none;
 }
+
 .info-section {
     display: flex;
     justify-content: space-between;
@@ -126,4 +127,57 @@ footer {
     color: white;
     padding: 20px;
     margin-top: 30px;
+}
+
+/* Mega Menu Styles */
+.nav-item.position-relative {
+    position: relative;
+}
+
+.mega-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100vw;
+    background-color: #f8f8f8;
+    display: none;
+    flex-wrap: wrap;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
+}
+
+.mega-menu.show {
+    display: flex;
+}
+
+.mega-menu .task {
+    flex: 1 1 20%;
+    padding: 10px;
+    border-right: 1px solid #ccc;
+    min-width: 200px;
+}
+
+.mega-menu .task:last-child {
+    border-right: none;
+}
+
+.mega-menu h4 {
+    margin-top: 0;
+    color: #8c734b;
+}
+
+.mega-menu p {
+    font-size: 0.9rem;
+}
+
+.mega-menu a {
+    color: #a38c67;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.mega-menu a:hover {
+    text-decoration: underline;
 }
