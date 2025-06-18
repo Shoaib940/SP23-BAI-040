@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crombie Clone</title>
+  <link rel="stylesheet" href="crombie.css" />
+</head>
+<body>
+  <header>
+    <img src="Holding-Page-logo-small.jpg" alt="Crombie Logo" class="logo" />
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#">HOME</a></li>
+      <li><a href="#">THE CROMBIE STORY</a></li>
+      <li><a href="#">BESPOKE</a></li>
+      <li><a href="#">CONTACT US</a></li>
+      <!-- New Menu Item for Previous Tasks -->
+      <li class="mega-menu-container">
+        <a href="#" id="megaMenuToggle">PREVIOUS TASKS</a>
+        <!-- The Mega Menu is hidden by default -->
+        <div id="megaMenu" class="mega-menu">
+          <div class="mega-menu-item">
+            <h3>Assignment 1</h3>
+            <p>Basic HTML structure and layout</p>
+            <a href="Assignment_1/shoaibcv.html" target="_blank">Open Task</a>
+          </div>
+          <div class="mega-menu-item">
+            <h3>Assignment 2</h3>
+            <p>Landing page with CSS styling</p>
+            <a href="Assignment_2/crombie.html" target="_blank">Open Task</a>
+          </div>
+          <div class="mega-menu-item">
+            <h3>Lab Task 1</h3>
+            <p>HTML semantic elements and basic forms</p>
+            <a href="Lab Task 1/s.html" target="_blank">Open Task</a>
+          </div>
+          <div class="mega-menu-item">
+            <h3>Lab Task 2</h3>
+            <p>Basic layout with CSS Flexbox</p>
+            <a href="Lab Task 2/Index.html" target="_blank">Open Task</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </nav>
+
+  <main>
+    <div class="hero">
+      <img src="newbanner2.jpg" alt="Hero Image" />
+    </div>
+
+    <div class="second-image">
+      <img src="CROMBIE-DB-HBONE-1.jpg" alt="Second Image" />
+    </div>
+
+    <section class="info-section">
+      <div class="info-box">
+        <img src="Cothal-Crombie.jpg" alt="Crombie Story" />
+        <div class="info-content">
+          <h2>THE CROMBIE STORY</h2>
+          <button>MORE INFO</button>
+        </div>
+      </div>
+      <div class="info-box">
+        <img src="news.jpg" alt="News" />
+        <div class="info-content">
+          <h2>NEWS</h2>
+          <button class="coming-soon">COMING SOON</button>
+        </div>
+      </div>
+      <div class="info-box">
+        <img src="Crombie-Bespoke-1.jpg" alt="Bespoke" />
+        <div class="info-content">
+          <h2>BESPOKE</h2>
+          <button>MORE INFO</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="newsletter">
+      <h2>SIGN UP TO OUR NEWSLETTER</h2>
+      <form>
+        <input type="text" placeholder="First Name" required />
+        <input type="text" placeholder="Last Name" required />
+        <input type="email" placeholder="Your email address" required />
+        <button type="submit">SIGN UP NOW</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Crombie. All rights reserved.</p>
+  </footer>
+
+  <!-- Link external JavaScript -->
+  <script src="mega-menu.js"></script>
+</body>
+</html>

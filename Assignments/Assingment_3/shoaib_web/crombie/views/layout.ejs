@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crombie</title>
+    <link rel="stylesheet" href="/css/crombie.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-container">
+            <!-- Centered logo -->
+            <img src="/images/Holding-Page-logo-small.jpg" alt="Crombie Logo" class="logo" />
+            
+            <!-- Right aligned icons -->
+            <div class="header-icons">
+                <% if (user) { %>
+                    <a href="/orders/history" class="icon-link">
+                        <i class="fas fa-user"></i>
+                        <%= user.name %>
+                    </a>
+                    <a href="/cart" class="icon-link">
+                        <i class="fas fa-shopping-cart"></i>
+                        <% if (typeof cart !== 'undefined' && cart.totalQty > 0) { %>
+                            <span class="cart-count"><%= cart.totalQty %></span>
+                        <% } %>
+                    </a>
+                    <a href="/auth/logout" class="icon-link">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </a>
+                <% } else { %>
+                    <a href="/auth/login" class="icon-link">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login
+                    </a>
+                    <a href="/auth/register" class="icon-link">
+                        <i class="fas fa-user-plus"></i>
+                        Register
+                    </a>
+                <% } %>
+            </div>
+        </div>
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <ul>
+            <li><a href="/">HOME</a></li>
+            <li><a href="#">THE CROMBIE STORY</a></li>
+            <li><a href="#">BESPOKE</a></li>
+            <li><a href="/products">SHOP</a></li>
+            <li><a href="/complaints">CONTACT US</a></li>
+        </ul>
+    </nav>
+
+    <!-- Flash Messages -->
+    <% if (typeof error !== 'undefined' && error.length > 0) { %>
+        <div class="alert alert-error">
+            <%= error %>
+        </div>
+    <% } %>
+    <% if (typeof success !== 'undefined' && success.length > 0) { %>
+        <div class="alert alert-success">
+            <%= success %>
+        </div>
+    <% } %>
+
+    <!-- Main Content -->
+    <main>
+        <%- body %>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025 Crombie. All rights reserved.</p>
+    </footer>
+
+    <script src="/js/crombie.js"></script>
+</body>
+</html> 

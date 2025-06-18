@@ -1,0 +1,48 @@
+<div class="orders-container">
+    <h2>Order History</h2>
+
+    <% if (orders.length === 0) { %>
+        <div class="empty-orders">
+            <p>You haven't placed any orders yet</p>
+            <a href="/products" class="btn-primary">Start Shopping</a>
+        </div>
+    <% } else { %>
+        <div class="orders-list">
+            <% orders.forEach(order => { %>
+                <div class="order-card">
+                    <div class="order-header">
+                        <h3>Order #<%= order._id %></h3>
+                        <span class="order-date"><%= new Date(order.createdAt).toLocaleDateString() %></span>
+                        <span class="order-status <%= order.status %>"><%= order.status %></span>
+                    </div>
+
+                    <div class="order-summary">
+                        <p>Total Items: <%= order.items.length %></p>
+                        <p>Total Amount: £<%= order.totalAmount.toFixed(2) %></p>
+                        <p>Payment Method: <%= order.paymentMethod %></p>
+                        <p>Status: <%= order.status %></p>
+                    </div>
+
+                    <div class="order-items">
+                        <% order.items.forEach(item => { %>
+                            <div class="order-item">
+                                <img src="<%= item.product.imageUrl %>" alt="<%= item.product.name %>" class="order-item-image">
+                                <div class="order-item-details">
+                                    <h4><%= item.product.name %></h4>
+                                    <p>Quantity: <%= item.quantity %></p>
+                                    <p>Price: £<%= item.price.toFixed(2) %></p>
+                                </div>
+                            </div>
+                        <% }); %>
+                    </div>
+
+                    <div class="order-address">
+                        <h4>Shipping Address:</h4>
+                        <p><%= order.shippingAddress %></p>
+                        <p>Phone: <%= order.phoneNumber %></p>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    <% } %>
+</div> 

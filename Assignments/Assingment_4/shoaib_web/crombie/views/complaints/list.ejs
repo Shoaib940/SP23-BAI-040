@@ -1,0 +1,73 @@
+<div class="complaints-container">
+    <h2><%= isAdmin ? 'All Complaints' : 'My Complaints' %></h2>
+
+    <% if (complaints.length === 0) { %>
+        <div class="empty-state">
+            <p>No complaints found.</p>
+            <% if (!isAdmin) { %>
+                <a href="/complaints" class="btn-primary">Submit a Complaint</a>
+            <% } %>
+        </div>
+    <% } else { %>
+        <div class="complaints-list">
+            <% complaints.forEach(complaint => { %>
+                <div class="complaint-card">
+                    <div class="complaint-header">
+                        <div class="complaint-info">
+                            <% if (isAdmin && complaint.user) { %>
+                                <h4>From: <%= complaint.user.name || 'Unknown User' %></h4>
+                                <p>Email: <%= complaint.user.email || 'No email' %></p>
+                            <% } %>
+                            <% if (complaint.order) { %>
+                                <p>Order #<%= complaint.order._id.toString().slice(-6) %></p>
+                                <p>Order Date: <%= new Date(complaint.order.createdAt).toLocaleDateString() %></p>
+                                <p>Order Amount: £<%= complaint.order.totalAmount.toFixed(2) %></p>
+                            <% } else { %>
+                                <p>Order information not available</p>
+                            <% } %>
+                        </div>
+                        <div class="complaint-status <%= complaint.status %>">
+                            <%= complaint.status.charAt(0).toUpperCase() + complaint.status.slice(1) %>
+                        </div>
+                    </div>
+
+                    <div class="complaint-message">
+                        <h5>Message:</h5>
+                        <p><%= complaint.message %></p>
+                    </div>
+
+                    <% if (complaint.adminResponse) { %>
+                        <div class="admin-response">
+                            <h5>Admin Response:</h5>
+                            <p><%= complaint.adminResponse %></p>
+                        </div>
+                    <% } %>
+
+                    <% if (isAdmin) { %>
+                        <form action="/complaints/admin/update/<%= complaint._id %>" method="POST" class="admin-form">
+                            <div class="form-group">
+                                <label for="status">Update Status:</label>
+                                <select name="status" id="status" class="form-control">
+                                    <option value="pending" <%= complaint.status === 'pending' ? 'selected' : '' %>>Pending</option>
+                                    <option value="in-progress" <%= complaint.status === 'in-progress' ? 'selected' : '' %>>In Progress</option>
+                                    <option value="resolved" <%= complaint.status === 'resolved' ? 'selected' : '' %>>Resolved</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="adminResponse">Response:</label>
+                                <textarea 
+                                    name="adminResponse" 
+                                    id="adminResponse" 
+                                    class="form-control" 
+                                    rows="3"
+                                    placeholder="Enter your response..."
+                                ><%= complaint.adminResponse %></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary">Update</button>
+                        </form>
+                    <% } %>
+                </div>
+            <% }); %>
+        </div>
+    <% } %>
+</div> 

@@ -1,0 +1,33 @@
+<div class="header">
+    <h1 class="welcome-text">Welcome, <%= admin.name %></h1>
+    <a href="/auth/logout" class="logout-btn">Logout</a>
+</div>
+
+<!-- Flash Messages -->
+<% if (messages.error && messages.error.length > 0) { %>
+    <div class="alert alert-error"><%= messages.error %></div>
+<% } %>
+<% if (messages.success && messages.success.length > 0) { %>
+    <div class="alert alert-success"><%= messages.success %></div>
+<% } %>
+
+<!-- Dashboard Content -->
+<div class="dashboard-stats">
+    <div class="stat-card">
+        <h3>Total Orders</h3>
+        <div class="number"><%= stats.totalOrders %></div>
+    </div>
+    <div class="stat-card">
+        <h3>Total Products</h3>
+        <div class="number"><%= stats.totalProducts %></div>
+    </div>
+    <div class="stat-card">
+        <h3>Total Customers</h3>
+        <div class="number"><%= stats.totalCustomers %></div>
+    </div>
+    <div class="stat-card">
+        <h3>Complaints</h3>
+        <div class="number"><%= stats.totalComplaints || 0 %></div>
+        <a href="/complaints/admin" class="admin-link">Manage Complaints</a>
+    </div>
+</div> 

@@ -1,0 +1,81 @@
+<div class="products-container">
+    <h2>Our Products</h2>
+
+    <div class="products-grid">
+        <% products.forEach(product => { %>
+            <div class="product-card">
+                <img src="<%= product.imageUrl %>" alt="<%= product.name %>" class="product-image">
+                <div class="product-details">
+                    <h3><%= product.name %></h3>
+                    <p class="product-description"><%= product.description %></p>
+                    <p class="product-price">£<%= product.price.toFixed(2) %></p>
+                    
+                    <% if (user) { %>
+                        <form action="/cart/add/<%= product._id %>" method="POST">
+                            <button type="submit" class="btn-primary">Add to Cart</button>
+                        </form>
+                    <% } else { %>
+                        <a href="/auth/login" class="btn-secondary">Login to Buy</a>
+                    <% } %>
+                    
+                    <a href="/products/<%= product._id %>" class="btn-secondary">View Details</a>
+                </div>
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+<style>
+.products-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.product-card {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.product-details {
+    padding: 1rem;
+}
+
+.product-description {
+    color: #666;
+    margin: 0.5rem 0;
+}
+
+.product-price {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #007bff;
+    margin: 0.5rem 0;
+}
+
+.product-card .btn-primary,
+.product-card .btn-secondary {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+</style> 

@@ -1,0 +1,74 @@
+<div class="orders-container">
+    <h2>Orders Management</h2>
+
+    <% if (messages.error && messages.error.length > 0) { %>
+        <div class="alert alert-error"><%= messages.error %></div>
+    <% } %>
+    <% if (messages.success && messages.success.length > 0) { %>
+        <div class="alert alert-success"><%= messages.success %></div>
+    <% } %>
+
+    <% if (orders && orders.length > 0) { %>
+        <table class="orders-table">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Items</th>
+                    <th>Total</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% orders.forEach(order => { %>
+                    <tr>
+                        <td><%= order._id %></td>
+                        <td><%= order.user ? order.user.name : 'Guest' %></td>
+                        <td>
+                            <ul class="items-list">
+                            <% 
+                            let orderTotal = 0;
+                            if (order.items && order.items.length > 0) {
+                                order.items.forEach(item => {
+                                    if (item.product && item.quantity) {
+                                        const itemTotal = item.product.price * item.quantity;
+                                        orderTotal += itemTotal;
+                            %>
+                                        <li>
+                                            <%= item.product.name %> (x<%= item.quantity %>) - £<%= itemTotal.toFixed(2) %>
+                                        </li>
+                            <%
+                                    }
+                                });
+                            }
+                            %>
+                            </ul>
+                        </td>
+                        <td>£<%= orderTotal.toFixed(2) %></td>
+                        <td><%= order.createdAt ? new Date(order.createdAt).toLocaleDateString() : 'N/A' %></td>
+                        <td>
+                            <span class="status-badge status-<%= (order.status || 'pending').toLowerCase() %>">
+                                <%= order.status || 'Pending' %>
+                            </span>
+                        </td>
+                        <td>
+                            <form action="/admin/orders/<%= order._id %>/status" method="POST" style="display: inline;">
+                                <select name="status" class="status-select" onchange="this.form.submit()">
+                                    <option value="pending" <%= (order.status || 'pending') === 'pending' ? 'selected' : '' %>>Pending</option>
+                                    <option value="processing" <%= order.status === 'processing' ? 'selected' : '' %>>Processing</option>
+                                    <option value="shipped" <%= order.status === 'shipped' ? 'selected' : '' %>>Shipped</option>
+                                    <option value="delivered" <%= order.status === 'delivered' ? 'selected' : '' %>>Delivered</option>
+                                    <option value="cancelled" <%= order.status === 'cancelled' ? 'selected' : '' %>>Cancelled</option>
+                                </select>
+                            </form>
+                        </td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    <% } else { %>
+        <div class="no-orders">No orders found.</div>
+    <% } %>
+</div> 
